@@ -40,7 +40,7 @@
     const header = document.querySelector("[data-site-header]");
     if (!header) return;
     const current = location.pathname.split("/").pop() || "index.html";
-    const isServicesActive = current === "services.html" || current === "service-detail.html" || serviceLinks.some(([, href]) => href === current);
+    const isServicesActive = current === "services.html" || serviceLinks.some(([, href]) => href === current);
     const navMarkup = nav.map(([label, href]) => {
       if (label !== "Services") {
         return `<a class="${current === href ? "is-active" : ""}" href="${href}">${label}</a>`;
