@@ -1,1 +1,25 @@
+.contact-list {
+  gap: 10px;
+}
+
+.contact-item {
+  gap: 12px;
+  padding-bottom: 12px;
+}
+
+.contact-item .lane-icon {
+  width: 44px;
+  height: 44px;
+}
+
+.contact-item h3 {
+  font-size: 1.05rem;
+}
+
+.contact-item p {
+  margin: 4px 0 0;
+  line-height: 1.45;
+  font-size: .95rem;
+}
+
 .support-note { margin-top: 18px; padding: 20px; border-left: 3px solid var(--copper); background: rgba(251,251,248,.68); }

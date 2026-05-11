@@ -147,6 +147,50 @@
     document.body.appendChild(cta);
   }
 
+  function renderCookieBanner() {
+    if (document.querySelector(".cookie-banner")) return;
+    const banner = document.createElement("section");
+    banner.className = "cookie-banner";
+    banner.setAttribute("aria-label", "Cookie notice");
+    banner.setAttribute("aria-hidden", "true");
+    banner.innerHTML = `
+      <div>
+        <strong>Cookie notice</strong>
+        <p>We use essential cookies to keep this site working and optional analytics cookies to understand how visitors use our appliance repair pages.</p>
+      </div>
+      <div class="cookie-banner__actions">
+        <a href="cookie.html">Cookie Policy</a>
+        <button class="cookie-banner__decline" type="button" data-cookie-choice="declined">Decline</button>
+        <button class="cookie-banner__accept" type="button" data-cookie-choice="accepted">Accept</button>
+      </div>
+    `;
+    document.body.appendChild(banner);
+  }
+
+  function bindCookieBanner() {
+    const banner = document.querySelector(".cookie-banner");
+    if (!banner) return;
+    const storageKey = "applianceAtlasCookieChoice";
+    const storedChoice = localStorage.getItem(storageKey);
+
+    const setVisible = (visible) => {
+      banner.classList.toggle("is-visible", visible);
+      banner.setAttribute("aria-hidden", String(!visible));
+      document.body.classList.toggle("cookie-banner-visible", visible);
+    };
+
+    if (!storedChoice) {
+      window.setTimeout(() => setVisible(true), 500);
+    }
+
+    banner.querySelectorAll("[data-cookie-choice]").forEach((button) => {
+      button.addEventListener("click", () => {
+        localStorage.setItem(storageKey, button.dataset.cookieChoice || "set");
+        setVisible(false);
+      });
+    });
+  }
+
   function bindInteractions() {
     const header = document.querySelector(".site-header");
     const floatingCta = document.querySelector(".floating-cta");
@@ -179,7 +223,36 @@
       observer.observe(el);
     });
     bindAccordions();
+    initServiceSwiper();
+    bindCookieBanner();
     if (window.lucide) window.lucide.createIcons();
+  }
+
+  function initServiceSwiper() {
+    const swiperEl = document.querySelector(".service-mobile-swiper");
+    if (!swiperEl || !window.Swiper) return;
+
+    const createSwiper = () => {
+      if (window.innerWidth > 560 || swiperEl.swiper) return;
+      new window.Swiper(swiperEl, {
+        slidesPerView: 1,
+        spaceBetween: 14,
+        loop: true,
+        speed: 520,
+        grabCursor: true,
+        pagination: {
+          el: ".service-swiper-pagination",
+          clickable: true
+        },
+        navigation: {
+          nextEl: ".service-swiper-next",
+          prevEl: ".service-swiper-prev"
+        }
+      });
+    };
+
+    createSwiper();
+    window.addEventListener("resize", createSwiper, { passive: true });
   }
 
   function bindAccordions() {
@@ -263,6 +336,7 @@
   renderHeader();
   renderFooter();
   renderFloatingCta();
+  renderCookieBanner();
   hydrateConfig();
   document.body.classList.add("is-ready");
   bindInteractions();

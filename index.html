@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@500;650;760;850;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
   <link rel="stylesheet" href="css/bundle.css">
 </head>
 <body>
@@ -73,6 +74,33 @@
             <img src="img/services/dishwasher-repair.webp" alt="Dishwasher repair technician in a kitchen">
             <span><strong>Dishwashing</strong><small>Drain, fill, pump, leaks</small></span>
           </figure>
+        </div>
+        <div class="service-mobile-swiper swiper" aria-label="Swipe appliance repair service categories">
+          <div class="swiper-wrapper">
+            <a class="swiper-slide service-swipe-card" href="service-refrigeration.html">
+              <img src="img/services/refrigeration-repair.webp" alt="Refrigerator repair technician with homeowner">
+              <span><i data-lucide="snowflake"></i><strong>Refrigeration repair</strong><p>Help for refrigerators, freezers, ice makers, cooling loss, frost buildup, leaks, seals, fans, and water systems.</p><small>Not cooling, ice maker, leaks, fan noise</small><em>View service page</em></span>
+            </a>
+            <a class="swiper-slide service-swipe-card" href="service-cooking.html">
+              <img src="img/services/cooking-repair.webp" alt="Oven repair technician in a kitchen">
+              <span><i data-lucide="chef-hat"></i><strong>Cooking appliance repair</strong><p>Service routing for ovens, ranges, cooktops, microwaves, burners, igniters, temperature drift, and control issues.</p><small>No heat, ignition, uneven baking, controls</small><em>View service page</em></span>
+            </a>
+            <a class="swiper-slide service-swipe-card" href="service-laundry.html">
+              <img src="img/services/laundry-repair.webp" alt="Washer and dryer repair technician">
+              <span><i data-lucide="shirt"></i><strong>Laundry appliance repair</strong><p>Support for washer drainage, spin, leaks, locked doors, dryer heat, venting, rollers, belts, and airflow problems.</p><small>Won't drain, no heat, spin, airflow</small><em>View service page</em></span>
+            </a>
+            <a class="swiper-slide service-swipe-card" href="service-dishwashing.html">
+              <img src="img/services/dishwasher-repair.webp" alt="Dishwasher repair technician in a kitchen">
+              <span><i data-lucide="droplets"></i><strong>Dishwashing systems</strong><p>Routing for dishwasher leaks, standing water, pump issues, inlet valves, spray arms, poor cleaning, and fill symptoms.</p><small>Leaks, standing water, poor cleaning, fill issues</small><em>View service page</em></span>
+            </a>
+          </div>
+          <div class="service-swiper-controls">
+            <div class="service-swiper-pagination"></div>
+            <div class="service-swiper-buttons">
+              <button class="service-swiper-prev" type="button" aria-label="Previous service"><i data-lucide="arrow-left"></i></button>
+              <button class="service-swiper-next" type="button" aria-label="Next service"><i data-lucide="arrow-right"></i></button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -159,6 +187,7 @@
   </main>
   <footer class="site-footer" data-site-footer></footer>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="js/site-config.js"></script>
   <script src="js/main.js"></script>
 </body>
