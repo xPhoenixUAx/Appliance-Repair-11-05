@@ -2,6 +2,7 @@ window.SITE_CONFIG = {
   companyName: "Appliance Atlas",
   companyLegalName: "Appliance Atlas Network LLC",
   companyId: "AAN-2026-US",
+  brandDescriptor: "Appliance Repair Network",
   phone: "+18445550192",
   phoneDisplay: "(844) 555-0192",
   phoneButtonLabel: "Request appliance help",
@@ -17,5 +18,12 @@ window.SITE_CONFIG = {
   footerDisclaimer: "Disclaimer: This site is a free service to assist homeowners in connecting with local service providers. All contractors/providers are independent and this site does not warrant or guarantee any work performed. It is the responsibility of the homeowner to verify that the hired contractor furnishes the necessary license and insurance required for the work being performed. All persons depicted in a photo or video are actors or models and not contractors listed on this site.",
   copyrightLine: "Appliance Atlas Network LLC. All rights reserved.",
   ctaPrimary: "Get matched with a technician",
-  ctaSecondary: "Explore service categories"
+  ctaSecondary: "Explore service categories",
+  floatingCallLabel: "Call",
+  floatingQuoteLabel: "Quote",
+  cookieNoticeTitle: "Cookie notice",
+  cookieNoticeText: "We use essential cookies to keep this site working and optional analytics cookies to understand how visitors use our appliance repair pages.",
+  cookiePolicyLabel: "Cookie Policy",
+  cookieDeclineLabel: "Decline",
+  cookieAcceptLabel: "Accept"
 };

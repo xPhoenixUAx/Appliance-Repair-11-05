@@ -16,11 +16,14 @@
   ];
 
   const icon = (name, size = 20) => `<i data-lucide="${name}" style="width:${size}px;height:${size}px"></i>`;
+  const brandDescriptor = config.brandDescriptor || "Appliance Repair Network";
 
   function hydrateConfig() {
     const setText = (selector, value) => document.querySelectorAll(selector).forEach((el) => { el.textContent = value || ""; });
     setText("[data-company-name]", config.companyName);
+    setText("[data-company-legal-name]", config.companyLegalName);
     setText("[data-company-id]", config.companyId);
+    setText("[data-brand-descriptor]", brandDescriptor);
     setText("[data-company-address]", [config.addressLine1, config.addressLine2].filter(Boolean).join(", "));
     setText("[data-footer-text-primary]", config.footerTextPrimary);
     setText("[data-footer-text-secondary]", config.footerTextSecondary);
@@ -29,11 +32,14 @@
     setText("[data-current-year]", new Date().getFullYear());
     setText("[data-phone-text]", config.phoneDisplay);
     setText("[data-email-text]", config.email);
+    setText("[data-business-hours]", config.businessHours);
+    setText("[data-service-area]", config.serviceArea);
 
     document.querySelectorAll("[data-phone-link]").forEach((el) => el.setAttribute("href", `tel:${config.phone}`));
     document.querySelectorAll("[data-email-link]").forEach((el) => el.setAttribute("href", `mailto:${config.email}`));
     document.querySelectorAll("[data-cta-primary]").forEach((el) => { el.textContent = config.ctaPrimary; });
     document.querySelectorAll("[data-cta-secondary]").forEach((el) => { el.textContent = config.ctaSecondary; });
+    if (config.companyName) document.title = document.title.replace(/Appliance Atlas/g, config.companyName);
   }
 
   function renderHeader() {
@@ -62,7 +68,7 @@
       <div class="nav-shell">
         <a class="brand" href="index.html" aria-label="${config.companyName} home">
           <span class="brand-mark">${icon("plug-zap", 22)}</span>
-          <span class="brand-lockup"><span class="brand-name" data-company-name>${config.companyName}</span><span class="brand-descriptor">Appliance Repair Network</span></span>
+          <span class="brand-lockup"><span class="brand-name" data-company-name>${config.companyName}</span><span class="brand-descriptor" data-brand-descriptor>${brandDescriptor}</span></span>
         </a>
         <nav class="desktop-nav" aria-label="Primary navigation">
           ${navMarkup}
@@ -73,7 +79,7 @@
       <div class="mobile-panel" aria-hidden="true">
         <div class="mobile-panel__inner">
           <button class="mobile-close" type="button" aria-label="Close menu">${icon("x", 26)}</button>
-          <div class="mobile-kicker">Appliance repair network</div>
+          <div class="mobile-kicker" data-brand-descriptor>${brandDescriptor}</div>
           <div class="mobile-links">
             <a href="index.html">Home</a>
             <details class="mobile-service-dropdown" ${isServicesActive ? "open" : ""}>
@@ -87,7 +93,7 @@
             <a href="contact.html">Contact</a>
           </div>
           <a class="btn btn-primary" data-phone-link href="tel:${config.phone}">${icon("phone-call", 18)}${config.phoneButtonLabel}</a>
-          <p>${config.businessHours} · ${config.serviceArea}</p>
+          <p><span data-business-hours>${config.businessHours}</span> · <span data-service-area>${config.serviceArea}</span></p>
         </div>
       </div>
     `;
@@ -99,7 +105,7 @@
     footer.innerHTML = `
       <div class="footer-grid">
         <div>
-          <a class="brand brand-footer" href="index.html"><span class="brand-mark">${icon("plug-zap", 22)}</span><span class="brand-lockup"><span class="brand-name" data-company-name>${config.companyName}</span><span class="brand-descriptor">Appliance Repair Network</span></span></a>
+          <a class="brand brand-footer" href="index.html"><span class="brand-mark">${icon("plug-zap", 22)}</span><span class="brand-lockup"><span class="brand-name" data-company-name>${config.companyName}</span><span class="brand-descriptor" data-brand-descriptor>${brandDescriptor}</span></span></a>
           <p data-footer-text-primary>${config.footerTextPrimary}</p>
           <p class="fine" data-disclaimer-short>${config.disclaimerShort}</p>
         </div>
@@ -114,14 +120,14 @@
         <div>
           <h3>Legal</h3>
           <a href="privacy.html">Privacy Policy</a>
-          <a href="terms.html">Terms</a>
+          <a href="terms.html">Terms of Service</a>
           <a href="cookie.html">Cookie Policy</a>
         </div>
         <div>
           <h3>Contact</h3>
           <a data-phone-link href="tel:${config.phone}">${icon("phone", 16)}<span data-phone-text>${config.phoneDisplay}</span></a>
           <a data-email-link href="mailto:${config.email}">${icon("mail", 16)}<span data-email-text>${config.email}</span></a>
-          <p>${config.businessHours}</p>
+          <p data-business-hours>${config.businessHours}</p>
           <p data-company-address>${config.addressLine1}, ${config.addressLine2}</p>
         </div>
       </div>
@@ -141,8 +147,8 @@
     cta.className = "floating-cta";
     cta.setAttribute("aria-hidden", "true");
     cta.innerHTML = `
-      <a class="floating-cta__call" data-phone-link href="tel:${config.phone}">${icon("phone-call", 18)}<span>Call</span></a>
-      <a class="floating-cta__quote" href="contact.html">${icon("clipboard-list", 18)}<span>Quote</span></a>
+      <a class="floating-cta__call" data-phone-link href="tel:${config.phone}">${icon("phone-call", 18)}<span>${config.floatingCallLabel || "Call"}</span></a>
+      <a class="floating-cta__quote" href="contact.html">${icon("clipboard-list", 18)}<span>${config.floatingQuoteLabel || "Quote"}</span></a>
     `;
     document.body.appendChild(cta);
   }
@@ -151,17 +157,17 @@
     if (document.querySelector(".cookie-banner")) return;
     const banner = document.createElement("section");
     banner.className = "cookie-banner";
-    banner.setAttribute("aria-label", "Cookie notice");
+    banner.setAttribute("aria-label", config.cookieNoticeTitle || "Cookie notice");
     banner.setAttribute("aria-hidden", "true");
     banner.innerHTML = `
       <div>
-        <strong>Cookie notice</strong>
-        <p>We use essential cookies to keep this site working and optional analytics cookies to understand how visitors use our appliance repair pages.</p>
+        <strong>${config.cookieNoticeTitle || "Cookie notice"}</strong>
+        <p>${config.cookieNoticeText || ""}</p>
       </div>
       <div class="cookie-banner__actions">
-        <a href="cookie.html">Cookie Policy</a>
-        <button class="cookie-banner__decline" type="button" data-cookie-choice="declined">Decline</button>
-        <button class="cookie-banner__accept" type="button" data-cookie-choice="accepted">Accept</button>
+        <a href="cookie.html">${config.cookiePolicyLabel || "Cookie Policy"}</a>
+        <button class="cookie-banner__decline" type="button" data-cookie-choice="declined">${config.cookieDeclineLabel || "Decline"}</button>
+        <button class="cookie-banner__accept" type="button" data-cookie-choice="accepted">${config.cookieAcceptLabel || "Accept"}</button>
       </div>
     `;
     document.body.appendChild(banner);
