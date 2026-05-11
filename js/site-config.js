@@ -1,0 +1,21 @@
+window.SITE_CONFIG = {
+  companyName: "Appliance Atlas",
+  companyLegalName: "Appliance Atlas Network LLC",
+  companyId: "AAN-2026-US",
+  phone: "+18445550192",
+  phoneDisplay: "(844) 555-0192",
+  phoneButtonLabel: "Request appliance help",
+  email: "support@applianceatlas.example",
+  addressLine1: "Service coordination hub",
+  addressLine2: "United States coverage network",
+  serviceArea: "Local appliance repair partners across major U.S. metro areas",
+  businessHours: "Daily 7:00 AM - 9:00 PM",
+  footerTextPrimary: "Premium appliance repair coordination for homes, rentals, property teams, and local service brands.",
+  footerTextSecondary: "Appliance Atlas is an independent aggregator. Dispatch availability, arrival windows, pricing, and warranty terms may vary by local provider.",
+  disclaimerShort: "Independent appliance repair aggregator. No manufacturer affiliation implied.",
+  disclaimerFull: "Appliance Atlas connects customers with independent appliance repair providers. We do not claim affiliation with appliance manufacturers unless explicitly stated. Diagnostic procedures, estimates, warranties, and repair availability are handled by the assigned local provider.",
+  footerDisclaimer: "Disclaimer: This site is a free service to assist homeowners in connecting with local service providers. All contractors/providers are independent and this site does not warrant or guarantee any work performed. It is the responsibility of the homeowner to verify that the hired contractor furnishes the necessary license and insurance required for the work being performed. All persons depicted in a photo or video are actors or models and not contractors listed on this site.",
+  copyrightLine: "Appliance Atlas Network LLC. All rights reserved.",
+  ctaPrimary: "Get matched with a technician",
+  ctaSecondary: "Explore service categories"
+};

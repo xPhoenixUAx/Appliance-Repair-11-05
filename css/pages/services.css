@@ -1,0 +1,16 @@
+.services-index { display: grid; gap: 42px; }
+.services-group {
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  gap: 38px;
+  align-items: center;
+  padding: 42px 0;
+  border-bottom: 1px solid var(--line);
+}
+.services-group:nth-child(even) { grid-template-columns: 1.1fr .9fr; }
+.services-group:nth-child(even) .services-copy { order: 2; }
+.services-copy ul { margin: 20px 0 0; padding-left: 18px; color: var(--muted); line-height: 1.8; }
+@media (max-width: 900px) {
+  .services-group, .services-group:nth-child(even) { grid-template-columns: 1fr; }
+  .services-group:nth-child(even) .services-copy { order: 0; }
+}
